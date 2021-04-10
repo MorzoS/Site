@@ -1,0 +1,43 @@
+.b-table {
+	width: 100%;
+	color: #FDFDFD;
+}
+
+.b-table a {
+	color: #FDFDFD;
+	display: block;
+	text-decoration: none;
+}
+
+.b-table th {
+	padding-left: 10px;
+	background-color: #212529;
+	border: 2px black solid;
+}
+
+.b-table tr {
+	background-color: #555;
+}
+
+.b-table tr:nth-child(odd) {
+	background-color: #444;
+}
+
+.b-table tr:hover {
+	background-color: #646464;
+}
+
+.b-table td {
+	border: 2px solid #333;
+	padding: 0;
+}
+
+.b-table td:nth-child(2) {
+	padding-left: 10px;
+	vertical-align: top;
+}
+
+.b-table__cover_art {
+	width: 40px;
+	height: auto;
+}
