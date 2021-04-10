@@ -17,15 +17,9 @@ app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHAR
 def basic():
     return render_template('basic.html')
 
-app = Flask(__name__, template_folder="wikiflex/beeld/home/templates", static_folder=SHARED_STATIC_FOLDER)
-
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
-
 if __name__ == "__main__":
     app.run(debug=True)
+
 import wikiflex
 from wikiflex.beeld import home
 app.register_blueprint(home.blueprint)
