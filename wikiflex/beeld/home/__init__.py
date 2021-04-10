@@ -6,6 +6,7 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 
 
 @blueprint.route("/")
+@blueprint.route("/home")
 def home():
 	return render_template("home.html")
 
