@@ -1,0 +1,73 @@
+{% extends 'basic_flat.html' %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div id="user-info">
+        <div class="block">
+            <h2>{{ current_user.display_name }}</h2>
+
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ current_user.email }}</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ current_user.first_name }} {{ current_user.last_name }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <h2>Stats</h2>
+            
+            <table>
+                <tr>
+                    <td>Series/films saved</td>
+                    <td>{{ wikiflix_collected_count }}</td>
+                </tr>
+                <tr>
+                    <td>Comments</td>
+                    <td>{{ wikiflix_comment_count }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <a herf="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <h5>Recently saved</h5>
+
+    {% if collected_wikiflix %}
+        <Table class="table b-table">
+            {% for wikiflix in recently_added_wikiflix %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('wikiflix.page', wikiflix_id=wikiflix.id) }}">
+                        <img class="b-table__cover_art" src="{{ wikiflix.cover_art_src() }}" alt="cover_art">
+                        {{ wikiflix.title }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </Table>
+
+        {% if wikiflix_collected_count > 3 %}
+            <a class="btn btn-dark mt-2 float-end" href="{{ url_for('home.profile_collected_wikiflix') }}">See all</a>
+        {% endif %}
+    {% else %}
+        <i>All added wikiflix sersies/films will be shown here.</i>
+        <hr/>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'basic_flat.html' %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <a class="btn btn-dark mb-2 float-end" href="{{ url_for('home.profile') }}">Profile</a>
+    <h2>Saved by you</h2>
+    <table class="table b-table">
+        <tr>
+            <th>Title</th>
+        </tr>
+        {% for wikiflix in collected_wikiflix %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('wikiflix.page', wikiflix_id=wikiflix.id) }}">
+                        <img class="b-table__cover_art" src="{{ wikiflix.cover_art_src() }}" alt="cover-art">
+                        {{ wikiflix.title }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
