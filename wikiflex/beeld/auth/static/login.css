@@ -1,0 +1,47 @@
+#login-form {
+	max-width: 100%;
+}
+
+@media (min-width: 576px) {
+	#login-form {
+		max-width: 75%;
+	}
+}
+
+@media (min-width: 992px) {
+	#login-form {
+		max-width: 65%;
+	}
+}
+
+#login-form .input-group {
+	margin-bottom: 12px;
+}
+
+#sign-up-text a {
+	color: #DDD;
+	text-decoration: none currentcolor solid;
+}
+
+#sign-up-text a:hover {
+	color: #888;
+}
+
+#forgot-password-text a {
+	color: red;
+	text-decoration: none currentcolor solid;
+}
+
+#forgot-password-text a:hover {
+	color: darkred;
+}
+
+#submit-button {
+	float: right;
+	background-color: #777;
+	border-color: #999;
+}
+
+#submit-button:hover {
+	background-color: #343a40;
+}

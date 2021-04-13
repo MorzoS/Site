@@ -1,0 +1,50 @@
+  
+#register-form {
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	#register-form {
+		max-width: 75%;
+	}
+}
+
+@media (min-width: 992px) {
+	#register-form {
+		max-width: 65%;
+	}
+}
+
+#register-form .input-group {
+	margin-bottom: 12px;
+}
+
+#form-header {
+	float: bottom;
+}
+
+#nezuko-sticker {
+	float: right;
+	width: 25%;
+	height: AUTO;
+	margin-right: 30px;
+}
+
+#login-text {
+	color: #DDD;
+	text-decoration: none currentcolor solid;
+}
+
+#login-text:hover {
+	color: #888;
+}
+
+#submit-button {
+	background-color: #777;
+	border-color: #999;
+	float: right;
+}
+
+#submit-button:hover {
+	background-color: #343a40;
+}
