@@ -1,0 +1,8 @@
+#add-wiki-box {
+	max-width: 550px;
+}
+
+#add-wiki-box button {
+	float: right;
+	margin-top: 20px;
+}
