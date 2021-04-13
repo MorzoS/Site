@@ -1,0 +1,47 @@
+{% extends 'basic_boxed.html' %} 
+
+{% block title %}Login{% endblock %}
+    
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/login.ccs') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div id="login-form" class="container">
+        <h1><b>Login</b></h1>
+
+        {% if login_error %}
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ login_error }}</strong>
+        </div>          
+        {% endif %}
+
+        <form method="POST" action="" novalidate>
+            {{ login_form.csrf_token }}
+
+            {{ login_form.email.label }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                {{ login_from.render('email') }}
+            </div>
+
+            <label for="password-field">Password</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                {{ login_form.render('password') }}
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
+
+            {{ login_form.remember_me() }}
+            {{ login_form.remember_me.label }}
+            
+            </br>
+
+            <span id="sign-up-text"><a href="{{ url_for('auth.register') }}">Sign up!</a></span>
+            </br>
+            <span id="forgot-password-text"><a href="#">Fogot password</a></span>
+        </form>
+    </div>
+{% endblock %}
