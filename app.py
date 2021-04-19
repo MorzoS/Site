@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from wikiflex.beeld.home.__init__ import blueprint
+from wikiflix.beeld.home.__init__ import blueprint
 
 SHARED_TEMPLATE_FOLDER = "wikiflex/beeld/sh_templates"
 SHARED_STATIC_FOLDER = "wikiflex/beeld/sh_static"
