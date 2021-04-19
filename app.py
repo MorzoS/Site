@@ -27,10 +27,7 @@ def app_aanmaken():
 
     app.register_blueprint(blueprint, url_prefix="")
 
-    app.run(debug=True)
-
     return app
 
-    if __name__ == "__main__":
-        app_aanmaken()
-        app.run(debug=True)
+if __name__ == "__main__":
+    main()
