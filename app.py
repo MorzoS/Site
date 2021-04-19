@@ -12,15 +12,20 @@ def page_not_found(e):
 def general_error(e):
 	return render_template("bad_request.html")
 
-app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
-app.register_blueprint(blueprint, url_prefix="")
-
-@app.route('/')
-def basic():
-    return render_template('basic.html')
-
-if __name__ == "__main__":
+def main():
+    app = app_aanmaken()
     app.run(debug=True)
 
-#blueprints laden
+def app_aanmaken():
+    app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
+    app.register_error_handler(404, page_not_found)
+    app.register_error_handler(HTTPException, general_error)
 
+    #blueprints laden
+
+    app.register_blueprint(blueprint, url_prefix="")
+
+    return app
+
+    if __name__ == "__main__":
+        main()
