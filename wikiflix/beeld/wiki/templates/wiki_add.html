@@ -1,0 +1,52 @@
+{% extends 'basic_flat.html %}
+    
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/wiki_add.css') }}">
+{% endblock  %}
+
+{% block title %}Wikiflix{% endblock  %}
+
+{% block content %}
+    <h1>add series/films</h1>
+    {{% if succes_alert %}
+        <div class="alert alert-succes">{{ succes_alert }}</div>
+    {% endif %}}
+    <div id="add-wiki-box">
+        <form method="POST" action="" enctype="multipart/form-data" novalidate>
+            {{ form.crfs_token }}
+
+            {{ form.cover_art.label }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-card-image"></i></span>
+                {{ form.render('cover_art') }}
+            </div>
+
+            {{ form.title.label }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tag-fill"></i></span>
+                {{ form.render('title') }}
+            </div>
+
+            {{ form.episodes.label }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-stack"></i></span>
+                {{ form.render('episodes') }}
+            </div>
+
+            {{ form.synopsis.label }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-square-fill"></i></span>
+                {{ form.render('synopsis') }}
+            </div>
+
+            Premiered
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calender-date-fill"></i></span>
+                {{ form.render('premiered') }}
+            </div>
+
+            <button class="btn btn-primary btn-dark" type="submit">Submit</button>
+        </form>
+    </div>
+    
+{% endblock  %}

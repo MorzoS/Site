@@ -1,0 +1,70 @@
+{% extends 'basic_flat.html' %}
+
+{% block  head %}
+    <link href="{{ url_for('.static', filename='css/wiki_front.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/util.css') }}" rel="stylesheet">
+{% endblock  %}
+
+{% block  title %}Wikiflix{%  endblock  %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('wikiflix.add') }}" class="btn btn-dark float-end">Add</a>
+    {% endif %}
+    <h1>Wikiflix index</h1>
+    <div id="search-box">
+        <form method="GET" class="mb-3" action="">
+            <div class="input-group">
+                <span class="input-group-text btn-dark"><i class="bi bi-search"></i></span>
+                <input type="text" name="search" placeholder="Search..." class="form-control" value="{{ request.args.get('search', '') }}">
+                <button class="btn btn-dark">Search</button> 
+            </div>
+        </form>
+    </div>
+
+    {% if wikiflix.pages %}
+
+    <div class="table-reponsive">
+        <table class="table b-table">
+            <tr>
+                <th>Title</th>
+                <th>Premiered</th>
+            </tr>
+            {% for wiki in wikiflix.items %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">
+                            <img class="b-table__cover_art" src="{{ wiki.cover_art_src() }}" alt="cover-art">
+                            {{ wiki.title }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ wiki.premiered }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="pagination-box">
+        <a href="{{ url_for('wiki.index', p=wiki.prev_num) }}" class="btn btn-dark {{ 'disabled' if wiki.page == 1 }}">&laquo;</a>
+        
+        {% for page in wiki.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=3) %}
+
+        {% if page %}
+            {% if page != wiki.page %}
+                <a href="{{ url_for('wiki.index', p=page) }}"></a>
+            {% else %}
+                <strong>{{ page }}</strong>
+            {% endif %}
+
+        {% endfor %}
+
+        <a href="{{ url_for('wiki.index', p=wiki.next_num) }}" class="btn btn-dark {{ 'disabled' if wiki.page == wiki.pages }}">&raquo;</a>
+    </div>
+    
+    {% else %}
+        <h3>No series/films found...</h3>
+        <img src="{{ url_for('static', filename='img/not_found.png') }}" style="width: 200px; height: auto;" alt="not_found">
+    {% endif %}
+    
+{% endblock  %}
