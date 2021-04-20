@@ -1,12 +1,12 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from wikiflix.beeld.home.__init__ import blueprint
+from wikiflix.beeld.home import blueprint
 from werkzeug.exceptions import HTTPException
 
 import wikiflix
 
-SHARED_TEMPLATE_FOLDER = "wikiflex/beeld/sh_templates"
-SHARED_STATIC_FOLDER = "wikiflex/beeld/sh_static"
+SHARED_TEMPLATE_FOLDER = "wikiflix/beeld/sh_templates"
+SHARED_STATIC_FOLDER = "wikiflix/beeld/sh_static"
 
 def pagina_niet_gevonden(e):
 	return render_template("404.html"), 404
@@ -26,7 +26,7 @@ def app_aanmaken():
 
     #blueprints laden
 
-    app.register_blueprint(blueprint, url_prefix="")
+    app.register_blueprint(blueprint)
 
     return app
 
