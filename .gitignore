@@ -148,6 +148,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# vscode json
+
+.vscode
+.json
 
 # C extensions
 *.so
