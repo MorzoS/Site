@@ -4,6 +4,7 @@ from wikiflix.beeld.home.__init__ import blueprint
 from werkzeug.exceptions import HTTPException
 
 import wikiflix
+import wikiflix.db
 
 SHARED_TEMPLATE_FOLDER = "wikiflix/beeld/sh_templates"
 SHARED_STATIC_FOLDER = "wikiflix/beeld/sh_static"
@@ -24,8 +25,14 @@ def app_aanmaken():
     app.register_error_handler(404, pagina_niet_gevonden)
     app.register_error_handler(HTTPException, general_error)
 
-    #blueprints laden
+    #database toevoegen
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wikiflix.db'
+    app.config['SECRET_KEY'] = "DeGeheimeSleutel"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    wikiflix.db.init_db(app)
+
+    #blueprints laden
     app.register_blueprint(blueprint)
 
     return app
