@@ -1,4 +1,3 @@
-from flask import Flask
 from flask import url_for
 
 class NavBar:
@@ -21,7 +20,7 @@ class NavBar:
         return str(self.elements)
 
     @classmethod
-    def _default_bar(cls, active_page=None):
+    def __default_bar(cls, active_page=None):
         if not cls._default_bar:
             cls._default_bar = NavBar(
                 cls.NavElement("home", url_for("home.home")),
