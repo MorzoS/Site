@@ -18,5 +18,5 @@ class wiki(Model):
     summary = Column(String(500))
     #sterren uit de show
     stars = Column(String(200))
-    #maker(s) van de show 
-    creators = Column(String(150), nullable=False)
+    #id van regisseur  
+    regisseur = Column(Integer, nullable=False)
