@@ -9,21 +9,21 @@ from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaF
 from wikiflix.core import NavBar
 from wikiflix.core.form import InlineValidatedForm
 from wikiflix.db import db_inst as db
-from wikiflix.Models.wiki import Wiki, WikiPageComment
+from wikiflix.Models.wiki import wiki
 
 blueprint = Blueprint("wiki", __name__, template_folder="templates", static_folder="static")
 
 @blueprint.route("/", methods=['GET', 'POST'])
 def index():
-	navbar = NavBar.default_bar(active_page="Wiki")
+	navbar = NavBar.default_bar(active_page="wiki")
 
 	current_page = request.args.get('p', 1, type=int)
 
 	if request.args.get('search'):
 		# Straight from the form into the query, what can go wrong..
-		query = Wiki.query.filter(Wiki.title.like(f"%{request.args['search']}%"))
+		query = wiki.query.filter(wiki.title.like(f"%{request.args['search']}%"))
 	else:
-		query = Wiki.query
+		query = wiki.query
 
 	wiki = query.paginate(page=current_page, per_page=10, error_out=True)
 
@@ -47,25 +47,17 @@ def page(wiki_id):
 			is_liked = True
 
 	navbar = NavBar.default_bar()
-	comment_form = CommentForm()
-
-	if comment_form.validate_on_submit():
-		comment = WikiPageComment(wiki_id=wiki.id, author_id=current_user.id, text=comment_form.text.data,
-								   placed_on=datetime.now())
-		wiki.comments.append(comment)
-		db.session.commit()
 
 	return render_template(
 		"wiki_page.html",
 		navbar=navbar,
 		wiki=wiki,
-		liked=is_liked,
-		comment_form=comment_form)
+		liked=is_liked)
 
 @blueprint.route("/<int:wiki_id>/collect")
 @login_required
 def user_collect(wiki_id):
-	wiki = Wiki.get(id=wiki_id)
+	wiki = wiki.get(id=wiki_id)
 
 	if not wiki:
 		abort(404)
@@ -78,7 +70,7 @@ def user_collect(wiki_id):
 @blueprint.route("/<int:wiki_id>/uncollect")
 @login_required
 def user_remove(wiki_id):
-	wiki = Wiki.get(id=wiki_id)
+	wiki = wiki.get(id=wiki_id)
 
 	if not wiki:
 		abort(404)
@@ -93,7 +85,7 @@ def user_remove(wiki_id):
 @blueprint.route("/<int:wiki_id>/delete")
 @login_required
 def delete(wiki_id):
-	wiki = Wiki.get(id=wiki_id)
+	wiki = wiki.get(id=wiki_id)
 
 	if not wiki:
 		abort(404)
@@ -106,7 +98,7 @@ def delete(wiki_id):
 @blueprint.route("/<int:wiki_id>/edit")
 @login_required
 def edit(wiki_id):
-	wiki = Wiki.get(id=wiki_id)
+	wiki = wiki.get(id=wiki_id)
 
 	if not wiki:
 		abort(404)
@@ -121,7 +113,7 @@ class AddWikiForm(InlineValidatedForm):
 	title = StringField(
 		'Title',
 		render_kw={"placeholder": "Title"},
-		validators=[validators.DataRequired(message="Every Wiki needs a title."), validators.Length(min=4, max=32)]
+		validators=[validators.DataRequired(message="Every wiki needs a title."), validators.Length(min=4, max=32)]
 	)
 	synopsis = TextAreaField(
 		'Synopsis',
@@ -147,10 +139,8 @@ def add():
 
 	if form.validate_on_submit():
 		img_data: bytes = form.cover_art.data.stream.read()
-
-		# TODO: Ensure img_data is of image type through validator
-
-		new_wiki = Wiki(
+		
+		new_wiki = wiki(
 			title=form.title.data,
 			synopsis=form.synopsis.data,
 			premiered=form.premiered.data,
@@ -163,6 +153,6 @@ def add():
 
         alert = Markup(
 			f"Added wiki <b>{form.title.data}</b>. Go to <a href='{url_for('wiki.page', wiki_id=new_wiki.id)}'>page</a>.")
-		return render_template("wiki_add.html", navbar=navbar, form=form, success_alert=alert)
+		#return render_template("wiki_add.html", navbar=navbar, form=form, success_alert=alert)
 
-	return render_template("wiki_add.html", navbar=navbar, form=form)
+	#return render_template("wiki_add.html", navbar=navbar, form=form)
