@@ -49,14 +49,14 @@ class LoginForm(InlineValidatedForm):
 @blueprint.route("/", methods=['GET', 'POST'])
 def index():
 	if flask_login.current_user.is_authenticated:
-		return redirect(url_for("home.index"))
+		return redirect(url_for("home.home"))
 
 	navbar = NavBar.default_bar()
 
 	login_form = LoginForm()
 
 	if login_form.validate_on_submit():
-		print("GoGoGo")
+		print("Validating")
 		valid = False
 
 		user = User.query.filter(User.email.like(login_form.email.data)).first()
@@ -68,7 +68,7 @@ def index():
 		if valid:
 			flask_login.login_user(user, remember=login_form.remember_me.data)
 			next = request.args.get("next")
-			return redirect(next or url_for("home.index"))
+			return redirect(next or url_for("home.home"))
 
 		return render_template("login.html", navbar=navbar, login_form=login_form, login_error="Login failed.")
 
@@ -78,7 +78,7 @@ def index():
 @blueprint.route("/register", methods=['GET', 'POST'])
 def register():
 	if flask_login.current_user.is_authenticated:
-		return redirect(url_for("home.index"))
+		return redirect(url_for("home.home"))
 
 	navbar = NavBar.default_bar()
 
@@ -156,4 +156,4 @@ def logout():
 	if flask_login.current_user.is_authenticated:
 		flask_login.logout_user()
 
-	return redirect(url_for("home.index"))
+	return redirect(url_for("home.home"))

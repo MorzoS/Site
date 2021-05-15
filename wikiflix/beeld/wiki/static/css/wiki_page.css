@@ -95,23 +95,3 @@
 #info-bar__content b {
 	color: #CCC;
 }
-
-#comment-box {
-}
-
-.comment {
-	padding: 12px;
-	background-color: #606060;
-	border: 2px solid #222;
-	border-radius: 4px;
-	margin-bottom: 4px;
-}
-
-.comment:nth-child(odd) {
-	background-color: #343a40;
-}
-
-.comment__timestamp {
-	float: right;
-	color: #999;
-}

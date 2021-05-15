@@ -10,7 +10,7 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 
 
 @blueprint.route("/")
-def index():
+def home():
 	recently_added_wiki = wiki.query.order_by(wiki.title.desc()).limit(3).all()
 	
 	carousel = CarouselImage.query.all()
@@ -28,7 +28,7 @@ def profile():
 	 
 	wiki_comment_count = len(current_user.wiki_comments)
 
-	return render_template("profile.html", collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count, wiki_comment_count=wiki_comment_count)
+	return render_template("profile.html", collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count)
 
 @blueprint.route("/profile/collected")
 def profile_collected_wiki():

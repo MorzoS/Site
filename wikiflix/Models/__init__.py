@@ -35,7 +35,6 @@ class CarouselImage(Model):
 		Model.__init__(self, *args, **kwargs)
 
 	id = Column(Integer, primary_key=True, nullable=False)
-	anime_id = Column(Integer, ForeignKey('anime.id'))
+	flim_id = Column(Integer, ForeignKey('film.id'))
 	subtext = Column(String(255))
-	image = Column(BLOB)
-
+	image = Column(Blob)

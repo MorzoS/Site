@@ -2,7 +2,6 @@ from flask import url_for
 
 from wikiflix.db.db_short import *
 
-
 class wiki(Model):
     __tablename__ = "wiki"
 
@@ -20,6 +19,8 @@ class wiki(Model):
     stars = Column(String(200))
     #id van regisseur  
     regisseur = Column(Integer, nullable=False)
+    #de foto voor de cover
+    foto= Column(Blob())
 
 @classmethod
 def get(cls, *_, **kwargs):
@@ -28,3 +29,9 @@ def get(cls, *_, **kwargs):
 @classmethod
 def get_all(cls, *_, **kwargs):
     return cls.query.filter_by(**kwargs).all()
+
+def cover_art_src(self):
+		if self.cover_art:
+			return self.foto
+		else:
+			return url_for('wiki.static', filename='img/default_cover_art.jpg')

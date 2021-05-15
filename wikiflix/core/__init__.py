@@ -23,7 +23,8 @@ class NavBar:
     def default_bar(cls, active_page=None):
         if not cls._default_bar:
             cls._default_bar = NavBar(
-                cls.NavElement("home", url_for("home.home")),
+                cls.NavElement("Home", url_for("home.home")),
+                cls.NavElement("Wiki", url_for("wiki.index")),
                 cls.NavElement("404", "Anywhere")
             )
         for element in cls._default_bar.elements:

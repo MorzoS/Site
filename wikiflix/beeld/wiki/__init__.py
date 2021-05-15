@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from flask import Blueprint, abort, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
@@ -9,7 +7,7 @@ from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaF
 from wikiflix.core import NavBar
 from wikiflix.core.form import InlineValidatedForm
 from wikiflix.db import db_inst as db
-from wikiflix.Models.wiki import wiki
+from wikiflix.models.wiki import wiki
 
 blueprint = Blueprint("wiki", __name__, template_folder="templates", static_folder="static")
 
@@ -28,10 +26,6 @@ def index():
 	wiki = query.paginate(page=current_page, per_page=10, error_out=True)
 
 	return render_template("wiki_front.html", navbar=navbar, wiki=wiki)
-
-class CommentForm(FlaskForm):
-	text = TextAreaField("", render_kw={"class": "form-control", "placeholder": "Add a comment!"},
-						 validators=[validators.DataRequired()])
 
 @blueprint.route("/<int:wiki_id>", methods=['GET', 'POST'])
 def page(wiki_id):
@@ -148,11 +142,11 @@ def add():
 			cover_art=img_data
 		)
 
-        db.session.add(new_wiki)
-        db.session.commit()
+		db.session.add(new_wiki)
+		db.session.commit()
 
-        alert = Markup(
+		alert = Markup(
 			f"Added wiki <b>{form.title.data}</b>. Go to <a href='{url_for('wiki.page', wiki_id=new_wiki.id)}'>page</a>.")
-		#return render_template("wiki_add.html", navbar=navbar, form=form, success_alert=alert)
+		return render_template("wiki_add.html", navbar=navbar, form=form, success_alert=alert)
 
-	#return render_template("wiki_add.html", navbar=navbar, form=form)
+	return render_template("wiki_add.html", navbar=navbar, form=form)
