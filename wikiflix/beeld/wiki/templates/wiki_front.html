@@ -27,19 +27,19 @@
     <div class="table-reponsive">
         <table class="table b-table">
             <tr>
-                <th>Title</th>
-                <th>Premiered</th>
+                <th>Titel</th>
+                <th>Releasejaar</th>
             </tr>
             {% for wiki in wikiflix.items %}
                 <tr>
                     <td>
                         <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">
                             <img class="b-table__cover_art" src="{{ wiki.cover_art_src() }}" alt="cover-art">
-                            {{ wiki.title }}
+                            {{ wiki.titel }}
                         </a>
                     </td>
                     <td>
-                        {{ wiki.premiered }}
+                        {{ wiki.releasejaar }}
                     </td>
                 </tr>
             {% endfor %}
@@ -63,7 +63,7 @@
     </div>
     
     {% else %}
-        <h3>No series/films found...</h3>
+        <h3>geen series of/en filmen gevonden...</h3>
         <img src="{{ url_for('static', filename='img/not_found.png') }}" style="width: 200px; height: auto;" alt="not_found">
     {% endif %}
     

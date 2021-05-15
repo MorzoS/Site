@@ -8,15 +8,17 @@ class wiki(Model):
     #ID die uniek moet zijn
     id = Column(Integer, primary_key=True, autoincrement=True)
     #titel van de serie/film
-    title = Column(String(100), nullable=False)
+    titel = Column(String(100), nullable=False)
     #hoeveel afleveringen
-    episodes = Column(Integer) 
+    afleveringen = Column(Integer) 
     #hoe lang de tetale kijktijd
-    watch_time = Column(Integer, nullable=False) 
+    kijktijd = Column(Integer, nullable=False) 
     #kleine uitleg
-    summary = Column(String(500))
+    samenvatting = Column(String(500))
     #sterren uit de show
     stars = Column(String(200))
+    #Releasejaar van de serie of film
+    releasejaar = Column(Integer)
     #id van regisseur  
     regisseur = Column(Integer, nullable=False)
     #de foto voor de cover

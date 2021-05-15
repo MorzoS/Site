@@ -7,7 +7,7 @@
 {% block title %}Wikiflix{% endblock  %}
 
 {% block content %}
-    <h1>add series/films</h1>
+    <h1>series/films toevoegen</h1>
     {{% if succes_alert %}
         <div class="alert alert-succes">{{ succes_alert }}</div>
     {% endif %}}
@@ -15,37 +15,37 @@
         <form method="POST" action="" enctype="multipart/form-data" novalidate>
             {{ form.crfs_token }}
 
-            {{ form.cover_art.label }}
+            {{ form.foto.label }}
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-card-image"></i></span>
-                {{ form.render('cover_art') }}
+                {{ form.render('foto') }}
             </div>
 
-            {{ form.title.label }}
+            {{ form.titel.label }}
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-tag-fill"></i></span>
-                {{ form.render('title') }}
+                {{ form.render('titel') }}
             </div>
 
-            {{ form.episodes.label }}
+            {{ form.afleveringen.label }}
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-stack"></i></span>
-                {{ form.render('episodes') }}
+                {{ form.render('afleveringen') }}
             </div>
 
-            {{ form.synopsis.label }}
+            {{ form.samenvatting.label }}
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-square-fill"></i></span>
-                {{ form.render('synopsis') }}
+                {{ form.render('samenvatting') }}
             </div>
 
-            Premiered
+            releasejaar
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-calender-date-fill"></i></span>
-                {{ form.render('premiered') }}
+                {{ form.render('releasejaar') }}
             </div>
 
-            <button class="btn btn-primary btn-dark" type="submit">Submit</button>
+            <button class="btn btn-primary btn-dark" type="submit">Toevoegen</button>
         </form>
     </div>
     

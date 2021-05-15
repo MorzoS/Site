@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from wikiflix.beeld.home.__init__ import blueprint
+from wikiflix.beeld.home import blueprint
 from werkzeug.exceptions import HTTPException
 
 import wikiflix

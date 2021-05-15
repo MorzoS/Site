@@ -7,7 +7,7 @@
 
 {% endblock %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Homepagina{% endblock %}
 
 {% block content %}
 
@@ -17,12 +17,12 @@
         <tr>
             <th>Title</th>
         </tr>
-        {% for wikiflix in collected_wikiflix %}
+        {% for wiki in collected_wiki %}
             <tr>
                 <td>
-                    <a href="{{ url_for('wikiflix.page', wikiflix_id=wikiflix.id) }}">
-                        <img class="b-table__cover_art" src="{{ wikiflix.cover_art_src() }}" alt="cover-art">
-                        {{ wikiflix.title }}
+                    <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">
+                        <img class="b-table__foto" src="{{ wiki.cover_art_src() }}" alt="foto">
+                        {{ wikiflix.titel }}
                     </a>
                 </td>
             </tr>

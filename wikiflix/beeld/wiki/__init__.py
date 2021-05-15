@@ -19,7 +19,7 @@ def index():
 
 	if request.args.get('search'):
 		# Straight from the form into the query, what can go wrong..
-		query = wiki.query.filter(wiki.title.like(f"%{request.args['search']}%"))
+		query = wiki.query.filter(wiki.titel.like(f"%{request.args['search']}%"))
 	else:
 		query = wiki.query
 
@@ -100,29 +100,39 @@ def edit(wiki_id):
 	return redirect(url_for('wiki.index'))
 
 class AddWikiForm(InlineValidatedForm):
-	cover_art = FileField(
-		render_kw={'accept': '.jpg,.png, application/vnd.sealedmedia.softseal.jpg,vnd.sealed.png'},
-		validators=[validators.DataRequired("Please select a cover picture.")]
+	foto = FileField(
+		render_kw={'accepteert': '.jpg,.png, application/vnd.sealedmedia.softseal.jpg,vnd.sealed.png'},
+		validators=[validators.DataRequired("selecteer een cover.")]
 	)
-	title = StringField(
-		'Title',
-		render_kw={"placeholder": "Title"},
-		validators=[validators.DataRequired(message="Every wiki needs a title."), validators.Length(min=4, max=32)]
+	titel = StringField(
+		'titel',
+		render_kw={"placeholder": "Titel"},
+		validators=[validators.DataRequired(message="Elke wiki heeft een titel nodig."), validators.Length(min=4, max=32)]
 	)
-	synopsis = TextAreaField(
-		'Synopsis',
-		render_kw={"placeholder": "Synopsis..."},
+	samenvatting = TextAreaField(
+		'samenvatting',
+		render_kw={"placeholder": "samenvatting..."},
 		validators=[]
 	)
-	episodes = IntegerField(
-		'Episodes',
+	afleveringen = IntegerField(
+		'afleveringen',
 		validators=[validators.NumberRange(min=1, max=999)],
-		render_kw={"placeholder": "Amount of episodes.."}
+		render_kw={"placeholder": "Aantal afleveringen.."}
 	)
-	premiered = StringField(
-        'Premiered',
-        render_kw={"placeholder": "Premiered"},
-        validators=[validators.DataRequired(message="Every wiki needs a premiered date."), validators.Length(min=10, max=18)]
+	releasejaar = StringField(
+        'releasejaar',
+        render_kw={"placeholder": "releasejaar"},
+        validators=[validators.DataRequired(message="Elke wiki heeft een releasejaar nodig."), validators.Length(4)]
+    )
+	regisseur = StringField(
+        'regiseur',
+        render_kw={"placeholder": "regiseur"},
+        validators=[validators.DataRequired(message="Elke wiki heeft tenminste een regiseur nodig."), validators.Length(min=3, max=30)]
+    )
+	kijktijd = StringField(
+        'kijktijd',
+        render_kw={"placeholder": "kijktijd"},
+        validators=[validators.Length(min=1, max=400)]
     )
 	
 @blueprint.route("/add", methods=['GET', 'POST'])
@@ -132,21 +142,23 @@ def add():
 	navbar = NavBar.default_bar()
 
 	if form.validate_on_submit():
-		img_data: bytes = form.cover_art.data.stream.read()
+		img_data: bytes = form.foto.data.stream.read()
 		
 		new_wiki = wiki(
-			title=form.title.data,
-			synopsis=form.synopsis.data,
-			premiered=form.premiered.data,
-			episodes=form.episodes.data,
-			cover_art=img_data
+			titel=form.titel.data,
+			regisseur=form.regisseur.data, 
+			samenvatting=form.samenvatting.data,
+			releasejaar=form.releasejaar.data,
+			afleveringen=form.afleveringen.data,
+			foto=img_data
+			
 		)
 
 		db.session.add(new_wiki)
 		db.session.commit()
 
 		alert = Markup(
-			f"Added wiki <b>{form.title.data}</b>. Go to <a href='{url_for('wiki.page', wiki_id=new_wiki.id)}'>page</a>.")
+			f"Added wiki <b>{form.titel.data}</b>. Go to <a href='{url_for('wiki.page', wiki_id=new_wiki.id)}'>page</a>.")
 		return render_template("wiki_add.html", navbar=navbar, form=form, success_alert=alert)
 
 	return render_template("wiki_add.html", navbar=navbar, form=form)

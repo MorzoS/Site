@@ -25,8 +25,6 @@ def profile():
 
 	collected_wiki = current_user.collected_wiki[:5]
 	wiki_collected_count = len(current_user.collected_wiki)
-	 
-	wiki_comment_count = len(current_user.wiki_comments)
 
 	return render_template("profile.html", collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count)
 

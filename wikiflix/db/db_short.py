@@ -5,6 +5,8 @@ session = db_inst.session
 Model = db_inst.Model
 metadata = Model.metadata
 
+relationship = db_inst.relationship
+
 Table = db_inst.Table
 Column = db_inst.Column
 
@@ -17,4 +19,3 @@ String = db_inst.String
 Float = db_inst.Float
 Blob = db_inst.BLOB
 
-relationship = db_inst.relationship

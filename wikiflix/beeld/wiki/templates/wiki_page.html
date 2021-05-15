@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/wiki_page.css') }}">
 {% endblock  %}
 
-{% block title %}{{ wiki.title }}{% endblock  %}
+{% block title %}{{ wiki.titel }}{% endblock  %}
 
 {% block content %}
     <div id="header">
@@ -14,7 +14,7 @@
                 <a href="{{ url_for('wiki.delete, wiki_id=wiki.id }}"><i class="bi bi-x-octagon-fill"></i></a>
             </div>
         {% endif %}
-        <h1>{{ wiki.title }}</h1>
+        <h1>{{ wiki.titel }}</h1>
     </div>
 
     <div id="bodu-section">
@@ -31,52 +31,25 @@
             </div>
 
             <div id="info-bar__content">
-                <h5>Information</h5>
+                <h5>Informatie</h5>
                 <p>
-                    <b>Premiered:</b> {{ wiki.premiered }}<br>
-                    {% if wiki.episodes %}
-                        <b>Episodes:</b> {{ wiki.episodes }}<br>
+                    <b>Releasejaar:</b> {{ wiki.releasejaar }}<br>
+                    {% if wiki.afleveringen %}
+                        <b>Afleveringen:</b> {{ wiki.afleveringen }}<br>
                     {% endif %}
                 </p>
             </div>
 
-            <div id="synopsis">
-                <h5>Synopsis</h5>
+            <div id="Samenvatting">
+                <h5>Samenvatting</h5>
                 <p>
-                    {% if wiki.synopsis %}
-                        {{ wiki.synopsis }}
+                    {% if wiki.samenvatting %}
+                        {{ wiki.samenvatting }}
                     {% else %}
-                        No synopsis added...
+                        geen smaenvatting toegevoegd...
                     {% endif %}
                 </p>
                 <hr/>
             </div>
-        </div>
-
-        <div id="comments">
-            <h4>Comments</h4>
-            <hr>
-            {% if current_user.is_authenticated %}
-			<form action="" method="post">
-				{{ comment_form.csrf_token }}
-
-				{{ comment_form.text() }}
-				<button type="submit" class="btn btn-dark mb-3 mt-3">COMMENT</button>
-			</form>
-		{% endif %}
-
-		{% if wiki.comments %}
-			<div id="comment-box">
-				{% for comment in wiki.comments %}
-					<div class="comment">
-						<div class="comment__timestamp">{{ comment.placed_on.strftime('%H:%M %d-%b \'%y') }}</div>
-						<h6>{{ comment.author.display_name }}</h6>
-						{{ comment.text }}
-					</div>
-				{% endfor %}
-            </div>
-        {% else %}
-            <h6><i>Be the first to write a comment!</i></h6>
-        {% endif %}
         </div>
 {% endblock  %}
