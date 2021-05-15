@@ -2,8 +2,8 @@ from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
 from wikiflix.core import NavBar
-from wikiflix.Models import CarouselImage
-from wikiflix.Models.wiki import Wiki
+from wikiflix.models import CarouselImage
+from wikiflix.models.wiki import wiki
 
 
 blueprint = Blueprint("home", __name__, template_folder="templates", static_folder="static")
@@ -11,7 +11,7 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 
 @blueprint.route("/")
 def index():
-	recently_added_wiki = Wiki.query.order_by(Wiki.title.desc()).limit(3).all()
+	recently_added_wiki = wiki.query.order_by(wiki.title.desc()).limit(3).all()
 	
 	carousel = CarouselImage.query.all()
 
