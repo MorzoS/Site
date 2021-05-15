@@ -1,6 +1,6 @@
 {% extends 'basic_boxed.html' %}
 
-{% block tilte %}Sign-up{% endblock %}
+{% block tilte %}Account aanmaken{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/register.css') }}">
@@ -8,9 +8,9 @@
 
 {% block content %}
     <form id="register-form" class="container needs-" method="POST" action="">
-        <h1><b>Sign-up</b></h1>
+        <h1><b>Maak een account</b></h1>
 
-        <P style="float:left">Sign up for a free account.</P>
+        <P style="float:left">maak een account aan voor wikiflix.</P>
         
         <div class="input-group">
             <label class="sr-only" for="email-field"></label>
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <a href="{{ url_for('auth.home') }}" id="login-text"><i class="fa fa-door-open"></i>Login</a>
+        <a href="{{ url_for('auth.home') }}" id="login-text"><i class="fa fa-door-open"></i>creeër account!</a>
 
         <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
 
