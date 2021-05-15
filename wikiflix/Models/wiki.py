@@ -20,3 +20,11 @@ class wiki(Model):
     stars = Column(String(200))
     #id van regisseur  
     regisseur = Column(Integer, nullable=False)
+
+@classmethod
+def get(cls, *_, **kwargs):
+    return cls.query.filter_by(**kwargs).first()
+
+@classmethod
+def get_all(cls, *_, **kwargs):
+    return cls.query.filter_by(**kwargs).all()

@@ -7,9 +7,9 @@ def init_db(flask_app):
     db_inst = SQLAlchemy(flask_app)
 
     # Ensure schema is declared by importing each module containing them
-    from wikiflix import Models
-    from wikiflix.Models import wiki
-    Models: Models
+    from wikiflix import models
+    from wikiflix.models import wiki
+    models: models
     wiki: wiki
 
     # Actually create the schema
