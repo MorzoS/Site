@@ -29,6 +29,38 @@
 	</div>
 </div>
 
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow sticky-top" id="main-nav-bar">
+	<div class="container container-small">
 
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+				aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarToggle">
+			<ul class="navbar-nav mr-auto">
+				{% for nav_el in navbar.elements %}
+				<li class="nav-item">
+					<a class="nav-link {{ 'active' if nav_el.active else '' }}" href="{{ nav_el.link }}">{{ nav_el.text
+						}}</a>
+				</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+
+		<div id="account-status-bar" class="shadow text-center">
+			{% if current_user.is_authenticated %}
+			<a href="{{ url_for('home.profile') }}">{{ current_user.display_name}}</a>
+			{% else %}
+			<a href="{{ url_for('auth.index') }}">Login</a>
+			{% endif %}
+		</div>
+
+	</div>
+</nav>
+
+{% block rest %} {% endblock %}
 
 </body>
+</html>
