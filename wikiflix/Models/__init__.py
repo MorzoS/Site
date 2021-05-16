@@ -38,10 +38,12 @@ class User(Model, UserMixin):
 
 class CarouselImage(Model):
 
-	def __init__(self, *args, **kwargs):
-		Model.__init__(self, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        Model.__init__(self, *args, **kwargs)
 
-	id = Column(Integer, primary_key=True, nullable=False)
-	flim_id = Column(Integer, ForeignKey('wiki.id'))
-	subtext = Column(String(255))
-	image = Column(Blob)
+    id = Column(Integer, primary_key=True, nullable=False)
+    flim_id = Column(Integer, ForeignKey('wiki.id'))
+    subtext = Column(String(255))
+    image = Column(Blob)
+
+    wiki = relationship('wiki')

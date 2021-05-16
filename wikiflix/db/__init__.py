@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+db_inst: SQLAlchemy = None
+
 def init_db(flask_app):
     global db_inst
 

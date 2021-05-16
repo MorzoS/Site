@@ -32,8 +32,8 @@ def get(cls, *_, **kwargs):
 def get_all(cls, *_, **kwargs):
     return cls.query.filter_by(**kwargs).all()
 
-def cover_art_src(self):
+def foto_src(self):
 		if self.foto:
 			return self.foto
 		else:
-			return url_for('wiki.static', filename='img/default_cover_art.jpg')
+			return url_for('wiki.static', filename='img/default_foto.jpg')
