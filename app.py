@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-from wikiflix.beeld.home import blueprint
 from werkzeug.exceptions import HTTPException
 
 import wikiflix.db
@@ -13,10 +12,6 @@ def pagina_niet_gevonden(e):
 
 def algemene_fout(e):
 	return render_template("bad_request.html")
-
-def main():
-    app = app_aanmaken()
-    app.run(debug=True)
 
 def app_aanmaken():
     app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
@@ -33,10 +28,18 @@ def app_aanmaken():
     app.register_error_handler(404, pagina_niet_gevonden)
     app.register_error_handler(HTTPException, algemene_fout)
 
+    from wikiflix.beeld import home, auth, anime
+
     #blueprints laden
-    app.register_blueprint(blueprint)
+    app.register_blueprint(home.blueprint)
+    app.register_blueprint(auth.blueprint, url_prefix="/auth")
+    app.register_blueprint(anime.blueprint, url_prefix="/anime")
 
     return app
+
+def main():
+    app = app_aanmaken()
+    app.run(debug=True)
 
 if __name__ == "__main__":
     main()
