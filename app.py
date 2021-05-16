@@ -28,12 +28,12 @@ def app_aanmaken():
     app.register_error_handler(404, pagina_niet_gevonden)
     app.register_error_handler(HTTPException, algemene_fout)
 
-    from wikiflix.beeld import home, auth, anime
+    from wikiflix.beeld import home, auth, wiki
 
     #blueprints laden
     app.register_blueprint(home.blueprint)
     app.register_blueprint(auth.blueprint, url_prefix="/auth")
-    app.register_blueprint(anime.blueprint, url_prefix="/anime")
+    app.register_blueprint(wiki.blueprint, url_prefix="/anime")
 
     return app
 

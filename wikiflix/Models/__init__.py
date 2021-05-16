@@ -3,6 +3,13 @@ from werkzeug import security
 
 from wikiflix.db.db_short import *
 
+collected_wiki = Table(
+	'collected_wiki',
+	metadata,
+	Column('user.id', Integer, ForeignKey('user.id')),
+	Column('wiki.id', Integer, ForeignKey('wiki.id'))
+)
+
 class User(Model, UserMixin):
     __tablename__ = "user"
 
@@ -35,6 +42,6 @@ class CarouselImage(Model):
 		Model.__init__(self, *args, **kwargs)
 
 	id = Column(Integer, primary_key=True, nullable=False)
-	flim_id = Column(Integer, ForeignKey('film.id'))
+	flim_id = Column(Integer, ForeignKey('wiki.id'))
 	subtext = Column(String(255))
 	image = Column(Blob)
