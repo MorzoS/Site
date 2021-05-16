@@ -33,7 +33,7 @@ def app_aanmaken():
     #blueprints laden
     app.register_blueprint(home.blueprint)
     app.register_blueprint(auth.blueprint, url_prefix="/auth")
-    app.register_blueprint(wiki.blueprint, url_prefix="/anime")
+    app.register_blueprint(wiki.blueprint, url_prefix="/wiki")
 
     return app
 

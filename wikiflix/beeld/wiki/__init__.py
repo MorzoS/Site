@@ -1,8 +1,7 @@
 from flask import Blueprint, abort, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from flask_wtf import FlaskForm
 from markupsafe import Markup
-from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
+from wtforms import FileField, IntegerField, StringField, TextAreaField, validators
 
 from wikiflix.core import NavBar
 from wikiflix.core.form import InlineValidatedForm
