@@ -1,9 +1,7 @@
-from flask import Flask, render_template, redirect, request, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template
 from wikiflix.beeld.home import blueprint
 from werkzeug.exceptions import HTTPException
 
-import wikiflix
 import wikiflix.db
 
 SHARED_TEMPLATE_FOLDER = "wikiflix/beeld/sh_templates"
@@ -22,9 +20,7 @@ def main():
 
 def app_aanmaken():
     app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
-    app.register_error_handler(404, pagina_niet_gevonden)
-    app.register_error_handler(HTTPException, algemene_fout)
-
+    
     #database toevoegen
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wikiflix.db'
     app.config['SECRET_KEY'] = "DeGeheimeSleutel"
@@ -33,6 +29,9 @@ def app_aanmaken():
     wikiflix.db.init_db(app)
     from wikiflix.core import auth_handler
     auth_handler.init(app)
+
+    app.register_error_handler(404, pagina_niet_gevonden)
+    app.register_error_handler(HTTPException, algemene_fout)
 
     #blueprints laden
     app.register_blueprint(blueprint)
