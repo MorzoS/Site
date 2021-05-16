@@ -96,40 +96,44 @@ def register():
 		password_repeat = request.form.get('password_repeat')
 
 		if not email:
-			errors['email_error'] = "Enter an email address"
+			errors['email_error'] = "Vul een geldig email adres in"
 			valid = False
 		else:
 			if len(email) < 6:
-				errors['email_error'] = "Invalid email length"
+				errors['email_error'] = "Ongeldige email lengte"
 				valid = False
 			else:
 				if not validation.is_email(email):
-					errors['email_error'] = "Incorrect email address format"
+					errors['email_error'] = "Incorrect email adres formaat"
 					valid = False
 				else:
 					if User.user_exists(email):
-						errors['email_error'] = "Email already in use"
+						errors['email_error'] = "Email is al in gebruik"
 						valid = False
 
 		if not display_name:
-			errors['display_name_error'] = "Enter a display name"
+			errors['display_name_error'] = "Vul een gebruikers naam in"
 			valid = False
 
 		if not first_name:
-			errors['first_name_error'] = "Enter a first name"
+			errors['first_name_error'] = "Vul u voornaam in"
+			valid = False
+
+		if not last_name:
+			errors['last_name_error'] = "Vul u achternaam in"
 			valid = False
 
 		if not password:
-			errors['password_error'] = "Enter a password"
+			errors['password_error'] = "Vul een wachtwoord in"
 			valid = False
 
 		if password:
 			if not password_repeat:
-				errors['repeat_password_error'] = "Repeat your password"
+				errors['repeat_password_error'] = "Herhaal u wachtwoord"
 				valid = False
 			else:
 				if password_repeat != password:
-					errors['password_repeat_error'] = "Passwords do not match"
+					errors['password_repeat_error'] = "Wachtwoord komt niet overeen"
 					valid = False
 
 		if valid:
