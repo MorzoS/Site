@@ -5,13 +5,13 @@
     <link href="{{ url_for('static', filename='css/util.css') }}" rel="stylesheet">
 {% endblock  %}
 
-{% block  title %}Wikiflix{%  endblock  %}
+{% block  title %}wiki{%  endblock  %}
 
 {% block content %}
     {% if current_user.is_authenticated %}
-        <a href="{{ url_for('wikiflix.add') }}" class="btn btn-dark float-end">Add</a>
+        <a href="{{ url_for('wiki.add') }}" class="btn btn-dark float-end">Add</a>
     {% endif %}
-    <h1>Wikiflix index</h1>
+    <h1>wiki index</h1>
     <div id="search-box">
         <form method="GET" class="mb-3" action="">
             <div class="input-group">
@@ -22,7 +22,7 @@
         </form>
     </div>
 
-    {% if wikiflix.pages %}
+    {% if wiki.pages %}
 
     <div class="table-reponsive">
         <table class="table b-table">
@@ -30,7 +30,7 @@
                 <th>Titel</th>
                 <th>Releasejaar</th>
             </tr>
-            {% for wiki in wikiflix.items %}
+            {% for wiki in wiki.items %}
                 <tr>
                     <td>
                         <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">

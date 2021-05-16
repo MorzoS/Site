@@ -74,13 +74,13 @@
 	background-color: #444;
 }
 
-#info-bar__cover-image {
+#info-bar__foto {
 	background-color: #343a40;
 	border-bottom: 2px solid #AAA;
 	margin-bottom: 12px;
 }
 
-#info-bar__cover-image img {
+#info-bar__foto img {
 	width: 100%;
 	height: auto;
 }

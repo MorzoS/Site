@@ -20,18 +20,18 @@
                     <td>{{ current_user.email }}</td>
                 </tr>
                 <tr>
-                    <td>Name:</td>
+                    <td>Naam:</td>
                     <td>{{ current_user.first_name }} {{ current_user.last_name }}</td>
                 </tr>
             </table>
         </div>
 
         <div class="block">
-            <h2>Stats</h2>
+            <h2>Statestieken</h2>
             
             <table>
                 <tr>
-                    <td>Series/films saved</td>
+                    <td>filmen en series opgeslagen</td>
                     <td>{{ wiki_collected_count }}</td>
                 </tr>
             </table>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <h5>Recently saved</h5>
+    <h5>Recent opgeslagen</h5>
 
     {% if collected_wiki %}
         <Table class="table b-table">
@@ -62,7 +62,7 @@
             <a class="btn btn-dark mt-2 float-end" href="{{ url_for('home.profile_collected_wiki') }}">See all</a>
         {% endif %}
     {% else %}
-        <i>All added wiki sersies/films will be shown here.</i>
+        <i>alle films en series worden hier weergeven</i>
         <hr/>
     {% endif %}
 

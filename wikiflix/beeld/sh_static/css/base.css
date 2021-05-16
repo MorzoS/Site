@@ -1,0 +1,115 @@
+@font-face {
+	font-family: "Noto Sans";
+	src: url("../NotoSansJP-Regular.otf") format("opentype");
+}
+
+html {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #181818;
+	font-family: "Noto Sans", Arial, sans-serif;
+	color: #F4F1EE;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	color: #FFF;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+a {
+	color: #BBB;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.container-small {
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	.container-small {
+		width: 500px;
+	}
+}
+
+@media (min-width: 768px) {
+	.container-small {
+		width: 680px;
+	}
+}
+
+@media (min-width: 992px) {
+	.container-small {
+		width: 920px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container-small {
+		width: 1100px;
+	}
+}
+
+#banner {
+	width: 100%;
+	height: 120px;
+	background-image: url("../img/banner.png");
+}
+
+#content-flat {
+	background-color: #666;
+	padding: 22px 60px 50px 32px;
+	min-height: 600px;
+	margin-bottom: 60px;
+	border: 3px solid #222;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	overflow: auto;
+}
+
+
+#content-boxed {
+	margin-top: 40px;
+	margin-bottom: 60px;
+	max-width: 800px;
+	border-radius: 10px;
+	background-color: #343a40;
+	border: 3px solid #222;
+	padding: 36px 48px 36px 48px;
+	overflow: auto;
+}
+
+@media (max-width: 576px) {
+	#content-flat {
+		padding: 22px 22px 50px 16px;
+
+	}
+}
+
+#main-nav-bar {
+	z-index: 99;
+}
+
+#account-status-bar {
+	font-size: 12pt;
+	padding: 3px 20px;
+	border-left: 2px solid #777;
+	border-right: 2px solid #777;
+}
+
+#account-status-bar a {
+	color: #BBB;
+	text-decoration: none;
+}
+
+#account-status-bar a:hover {
+	color: #DDD;
+}
