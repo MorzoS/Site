@@ -22,7 +22,7 @@
         </form>
     </div>
 
-    {% if wiki.pages %}
+    {% if wikis.pages %}
 
     <div class="table-reponsive">
         <table class="table b-table">
@@ -30,7 +30,7 @@
                 <th>Titel</th>
                 <th>Releasejaar</th>
             </tr>
-            {% for wiki in wiki.items %}
+            {% for wiki in wikis.items %}
                 <tr>
                     <td>
                         <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">
@@ -46,12 +46,12 @@
         </table>
     </div>
     <div class="pagination-box">
-        <a href="{{ url_for('wiki.index', p=wiki.prev_num) }}" class="btn btn-dark {{ 'disabled' if wiki.page == 1 }}">&laquo;</a>
+        <a href="{{ url_for('wiki.index', p=wikis.prev_num) }}" class="btn btn-dark {{ 'disabled' if wiki.page == 1 }}">&laquo;</a>
         
-        {% for page in wiki.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=3) %}
+        {% for page in wikis.iter_page(left_edge=2, left_current=2, right_edge=2, right_current=3) %}
 
             {% if page %}
-                {% if page != wiki.page %}
+                {% if page != wikis.page %}
                     <a href="{{ url_for('wiki.index', p=page) }}"></a>
                 {% else %}
                     <strong>{{ page }}</strong>
@@ -62,7 +62,7 @@
 
         {% endfor %}
 
-        <a href="{{ url_for('wiki.index', p=wiki.next_num) }}" class="btn btn-dark {{ 'disabled' if wiki.page == wiki.pages }}">&raquo;</a>
+        <a href="{{ url_for('wiki.index', p=wikis.next_num) }}" class="btn btn-dark {{ 'disabled' if wikis.page == wikis.pages }}">&raquo;</a>
     </div>
     
     {% else %}
