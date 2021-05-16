@@ -17,10 +17,10 @@ class LoginForm(InlineValidatedForm):
 			"placeholder": "E-mail",
 		},
 		validators=[
-			validators.DataRequired("Please enter an email address."),
+			validators.DataRequired("voer een Email adres in."),
 			validators.Regexp(
 				"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$",
-				message="Not an email address")
+				message="dit is niet een correct Email adres")
 		]
 
 	)
@@ -31,8 +31,8 @@ class LoginForm(InlineValidatedForm):
 			"placeholder": "Password",
 		},
 		validators=[
-			validators.DataRequired("Please enter a password."),
-			validators.Length(min=8, max=64, message="Password should be 8 characters or more")
+			validators.DataRequired("voer een wachtwoord in."),
+			validators.Length(min=8, max=64, message="het wachtwoord moet langer dan 8 tekens zijn")
 		]
 
 	)

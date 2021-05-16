@@ -26,7 +26,7 @@ def profile():
 	collected_wiki = current_user.collected_wiki[:5]
 	wiki_collected_count = len(current_user.collected_wiki)
 
-	return render_template("profile.html", collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count)
+	return render_template("profile.html", navbar=navbar, collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count)
 
 @blueprint.route("/profile/collected")
 def profile_collected_wiki():
