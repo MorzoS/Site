@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background-color: #d0d0d0;
+	background-color: #f4f4f4;
 	font-family: "Noto Sans", Arial, sans-serif;
 	color: #000000;
 }
@@ -106,10 +106,10 @@ a:hover {
 }
 
 #account-status-bar a {
-	color: #CCC;
+	color: #000;
 	text-decoration: none;
 }
 
 #account-status-bar a:hover {
-	color: #BBB;
+	color: #202020;
 }
