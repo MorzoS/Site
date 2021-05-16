@@ -11,7 +11,7 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 
 @blueprint.route("/")
 def home():
-	recently_added_wiki = wiki.query.order_by(wiki.title.desc()).limit(3).all()
+	recently_added_wiki = wiki.query.order_by(wiki.titel.desc()).limit(3).all()
 	
 	carousel = CarouselImage.query.all()
 
