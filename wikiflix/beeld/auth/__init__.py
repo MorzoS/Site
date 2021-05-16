@@ -17,7 +17,7 @@ class LoginForm(InlineValidatedForm):
 			"placeholder": "E-mail",
 		},
 		validators=[
-			validators.DataRequired("voer een Email adres in."),
+			validators.DataRequired("Voer een Email adres in."),
 			validators.Regexp(
 				"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$",
 				message="dit is niet een correct Email adres")
@@ -31,7 +31,7 @@ class LoginForm(InlineValidatedForm):
 			"placeholder": "Password",
 		},
 		validators=[
-			validators.DataRequired("voer een wachtwoord in."),
+			validators.DataRequired("Voer een wachtwoord in."),
 			validators.Length(min=8, max=64, message="het wachtwoord moet langer dan 8 tekens zijn")
 		]
 
@@ -96,44 +96,44 @@ def register():
 		password_repeat = request.form.get('password_repeat')
 
 		if not email:
-			errors['email_error'] = "Vul een geldig email adres in"
+			errors['email_error'] = "Vul een geldig email adres in."
 			valid = False
 		else:
 			if len(email) < 6:
-				errors['email_error'] = "Ongeldige email lengte"
+				errors['email_error'] = "Ongeldige email lengte."
 				valid = False
 			else:
 				if not validation.is_email(email):
-					errors['email_error'] = "Incorrect email adres formaat"
+					errors['email_error'] = "Incorrect email adres formaat."
 					valid = False
 				else:
 					if User.user_exists(email):
-						errors['email_error'] = "Email is al in gebruik"
+						errors['email_error'] = "Email is al in gebruik."
 						valid = False
 
 		if not display_name:
-			errors['display_name_error'] = "Vul een gebruikers naam in"
+			errors['display_name_error'] = "Vul een gebruikers naam in."
 			valid = False
 
 		if not first_name:
-			errors['first_name_error'] = "Vul u voornaam in"
+			errors['first_name_error'] = "Vul u voornaam in."
 			valid = False
 
 		if not last_name:
-			errors['last_name_error'] = "Vul u achternaam in"
+			errors['last_name_error'] = "Vul u achternaam in."
 			valid = False
 
 		if not password:
-			errors['password_error'] = "Vul een wachtwoord in"
+			errors['password_error'] = "Vul een wachtwoord in."
 			valid = False
 
 		if password:
 			if not password_repeat:
-				errors['repeat_password_error'] = "Herhaal u wachtwoord"
+				errors['repeat_password_error'] = "Herhaal u wachtwoord."
 				valid = False
 			else:
 				if password_repeat != password:
-					errors['password_repeat_error'] = "Wachtwoord komt niet overeen"
+					errors['password_repeat_error'] = "Wachtwoord komt niet overeen."
 					valid = False
 
 		if valid:
