@@ -106,10 +106,10 @@ a:hover {
 }
 
 #account-status-bar a {
-	color: #CCC;
+	color: #000;
 	text-decoration: none;
 }
 
 #account-status-bar a:hover {
-	color: #BBB;
+	color: #202020;
 }
