@@ -21,17 +21,12 @@ def home():
 @blueprint.route("/profile")
 @login_required
 def profile():
-	navbar = NavBar._default_bar()
+	navbar = NavBar.default_bar()
 
-	collected_wiki = current_user.collected_wiki[:5]
-	wiki_collected_count = len(current_user.collected_wiki)
-
-	return render_template("profile.html", navbar=navbar, collected_wiki=collected_wiki, wiki_collected_count=wiki_collected_count)
+	return render_template("profile.html", navbar=navbar)
 
 @blueprint.route("/profile/collected")
 def profile_collected_wiki():
 	navbar = NavBar.default_bar()
 
-	collected_wiki = current_user.collected_wiki
-
-	return render_template("profile_collected.html", navbar=navbar, collected_wiki=collected_wiki)
+	return render_template("profile_collected.html", navbar=navbar)

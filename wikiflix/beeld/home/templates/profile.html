@@ -26,44 +26,9 @@
             </table>
         </div>
 
-        <div class="block">
-            <h2>Statestieken</h2>
-            
-            <table>
-                <tr>
-                    <td>filmen en series opgeslagen</td>
-                    <td>{{ wiki_collected_count }}</td>
-                </tr>
-            </table>
-        </div>
-
         <div>
             <a herf="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>
-
-    <h5>Recent opgeslagen</h5>
-
-    {% if collected_wiki %}
-        <Table class="table b-table">
-            {% for wiki in recently_added_wiki %}
-            <tr>
-                <td>
-                    <a href="{{ url_for('wiki.page', wiki_id=wiki.id) }}">
-                        <img class="b-table__foto" src="{{ wiki.foto_src() }}" alt="foto">
-                        {{ wiki.titel }}
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </Table>
-
-        {% if wiki_collected_count > 3 %}
-            <a class="btn btn-dark mt-2 float-end" href="{{ url_for('home.profile_collected_wiki') }}">See all</a>
-        {% endif %}
-    {% else %}
-        <i>alle films en series worden hier weergeven</i>
-        <hr/>
-    {% endif %}
 
 {% endblock %}
