@@ -19,12 +19,12 @@
 }
 
 #sign-up-text a {
-	color: #DDD;
+	color: #eee;
 	text-decoration: none currentcolor solid;
 }
 
 #sign-up-text a:hover {
-	color: #888;
+	color: #999;
 }
 
 #forgot-password-text a {
@@ -38,10 +38,10 @@
 
 #submit-button {
 	float: right;
-	background-color: #777;
-	border-color: #999;
+	background-color: #555;
+	border-color: #777;
 }
 
 #submit-button:hover {
-	background-color: #343a40;
+	background-color: #333;
 }
