@@ -1,16 +1,16 @@
-{% extends 'basic_flat.html %}
+{% extends 'basic_flat.html' %}
     
 {% block head %}
-    <link rel="stylesheet" href="{{ url_for('.static', filename='css/wiki_add.css') }}">
+    <link href="{{ url_for('.static', filename='css/wiki_add.css') }}" rel="stylesheet">
 {% endblock  %}
 
-{% block title %}Wikiflix{% endblock  %}
+{% block title %}Wikiflix{% endblock %}
 
 {% block content %}
     <h1>series/films toevoegen</h1>
-    {{% if succes_alert %}
-        <div class="alert alert-succes">{{ succes_alert }}</div>
-    {% endif %}}
+    {% if success_alert %}
+		<div class="alert alert-success">{{ success_alert }}</div>
+	{% endif %}
     <div id="add-wiki-box">
         <form method="POST" action="" enctype="multipart/form-data" novalidate>
             {{ form.crfs_token }}
