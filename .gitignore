@@ -208,4 +208,4 @@ cython_debug/
 wikiflix/beeld/home/__pycache__/__init__.cpython-37.pyc
 
 # Database
-.db
+*.db
