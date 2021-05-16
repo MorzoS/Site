@@ -22,9 +22,9 @@ def index():
 	else:
 		query = wiki.query
 
-	wiki = query.paginate(page=current_page, per_page=10, error_out=True)
+	wikis = query.paginate(page=current_page, per_page=10, error_out=True)
 
-	return render_template("wiki_front.html", navbar=navbar, wiki=wiki)
+	return render_template("wiki_front.html", navbar=navbar, wikis=wikis)
 
 @blueprint.route("/<int:wiki_id>", methods=['GET', 'POST'])
 def page(wiki_id):

@@ -50,12 +50,15 @@
         
         {% for page in wiki.iter_pages(left_edge=2, left_current=2, right_edge=2, right_current=3) %}
 
-        {% if page %}
-            {% if page != wiki.page %}
-                <a href="{{ url_for('wiki.index', p=page) }}"></a>
+            {% if page %}
+                {% if page != wiki.page %}
+                    <a href="{{ url_for('wiki.index', p=page) }}"></a>
+                {% else %}
+                    <strong>{{ page }}</strong>
+                {% endif %}
             {% else %}
-                <strong>{{ page }}</strong>
-            {% endif %}
+				<span class=ellipsis>…</span>
+			{% endif %}
 
         {% endfor %}
 
