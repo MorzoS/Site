@@ -15,10 +15,11 @@
         <div class="input-group">
             <label class="sr-only" for="email-field"></label>
             <span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-            <input class="form-control {% if posted %}{{'is-invalid' if email_error else 'is-valid'}}{% endif %}" 
-            type="email" name="email" id="email-field" placeholder="E-mail" value="{{ request.form.get('email', '') }}" required>
+            <input class="form-control {% if posted %}{{'is-invalid' if email_error else 'is-valid'}}{% endif %}"
+                   type="email" name="email" id="email-field" placeholder="E-mail"
+                   value="{{ request.form.get('email', '') }}" required>
             <div class="invalid-feedback">
-                {{email-error}}
+                {{email_error}}
             </div>
         </div>
 
@@ -76,7 +77,7 @@
             </div>
         </div>
 
-        <a href="{{ url_for('auth.home') }}" id="login-text"><i class="fa fa-door-open"></i>creeër account!</a>
+        <a href="{{ url_for('auth.index') }}" id="login-text"><i class="fa fa-door-open"></i>creeër account!</a>
 
         <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
 
