@@ -15,7 +15,7 @@ def home():
 	
 	carousel = CarouselImage.query.all()
 
-	navbar = NavBar._default_bar(active_page="Home")
+	navbar = NavBar.default_bar(active_page="Home")
 	return render_template("home.html", navbar=navbar, recently_added_wiki=recently_added_wiki, carousel=carousel)
 
 @blueprint.route("/profile")
@@ -30,7 +30,7 @@ def profile():
 
 @blueprint.route("/profile/collected")
 def profile_collected_wiki():
-	navbar = NavBar._default_bar()
+	navbar = NavBar.default_bar()
 
 	collected_wiki = current_user.collected_wiki
 
