@@ -1,10 +1,10 @@
 #user-info {
-	background-color: #555;
+	background-color: #757575;
 	padding: 12px;
 	margin-bottom: 12px;
 	position: relative;
 	border-radius: 4px;
-	border: 3px dashed #444;
+	border: 3px dashed #000;
 }
 
 #user-info h2 {
@@ -22,7 +22,7 @@
 }
 
 #user-info td:first-child {
-	color: #CCC;
+	color: #666;
 }
 
 #logout-button {
@@ -37,5 +37,5 @@
 }
 
 #logout-button a:hover {
-	color: #888888;
+	color: #FFFFFF;
 }
