@@ -36,4 +36,4 @@ def foto_src(self):
 		if self.foto:
 			return self.foto
 		else:
-			return url_for('wiki.static', filename='img/default_foto.jpg')
+			return url_for('wiki.static', filename='img/default_foto.png')
